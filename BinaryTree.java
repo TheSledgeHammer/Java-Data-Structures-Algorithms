@@ -1,55 +1,66 @@
-package AlgorithmStructures;
+package AlgorithmStructures.Experiment;
 
-public class BinaryTree2<V> {
+import java.util.LinkedList;
+import java.util.Queue;
 
-	BTNode2<V> root;
+public class BinaryTree<V> extends TreeNode<V> {
+	
+	public TreeNode<V> root;
 
-	BinaryTree2(V name) {
-		root = new BTNode2<V>(name);
+	public BinaryTree(V key) {
+		super(key);
+		root = new TreeNode<V>(key);
 	}
-
-	BinaryTree2() {
+	
+	public BinaryTree() {
+		super(null);
 		root = null;
 	}
-
-	private void printPostOrder(BTNode2<?> bTNode) {
-		if (bTNode == null) {
+	
+	public int depth(TreeNode<V> node) {
+		int d = 0;
+		while(node != root) {
+			node = node.parent;
+			d++;
+		}
+		return d;
+	}
+	
+	public int size(TreeNode<V> node) {
+		if(node == null) {
+			return 0;
+		}
+		return 1 + size(node.left) + size(node.right);
+	}
+	
+	public int height(TreeNode<V> node) {
+		if(node == null) {
+			return -1;
+		}
+		return 1 + Math.max(height(node.left), height(node.right));
+	}
+	
+	public void traverse(TreeNode<V> node) {
+		if(node == null) {
 			return;
 		}
-		printPostOrder(bTNode.left);
-		printPostOrder(bTNode.right);
-		System.out.print(bTNode.key + " ");
+		traverse(node.left);
+		traverse(node.right);
 	}
-
-	private void printInOrder(BTNode2<?> bTNode) {
-		if (bTNode == null) {
-			return;
+	
+	public void BreadthFirstTraversal() {
+		Queue<TreeNode<V>> q = new LinkedList<TreeNode<V>>();
+		if(root != null) {
+			q.add(root);
 		}
-
-		printPostOrder(bTNode.left);
-		System.out.print(bTNode.key + " ");
-		printPostOrder(bTNode.right);
-	}
-
-	private void printPreOrder(BTNode2<?> bTNode) {
-		if (bTNode == null) {
-			return;
+		while(!q.isEmpty()) {
+			TreeNode<V> node = q.remove();
+			if(node.left != null) {
+				q.add(node.left);
+			}
+			if(node.right != null) {
+				q.add(node.right);
+			}
 		}
-
-		System.out.print(bTNode.key + " ");
-		printPostOrder(bTNode.left);
-		printPostOrder(bTNode.right);
-	}
-
-	public void printPostOrder() {
-		printPostOrder(root);
-	}
-
-	public void printInOrder() {
-		printInOrder(root);
-	}
-
-	public void printPreOrder() {
-		printPreOrder(root);
 	}
 }
