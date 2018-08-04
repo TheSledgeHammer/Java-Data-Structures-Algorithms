@@ -82,49 +82,4 @@ public class MagicSquare {
 		}
 		return true;
 	}
-
-	public int add(int thisSize, int otherSize) {
-		Matrix other = new Matrix();
-		otherSize = other.Size();
-		thisSize = this.Size();
-		int newSize = thisSize + otherSize;
-		if (!checkOdd(newSize)) {
-			return newSize + 1;
-		}
-		return newSize;
-	}
-
-/*
-	public int subtract(int thisSize, int otherSize) {
-		Matrix other = new Matrix();
-		otherSize = other.Size();
-		thisSize = this.Size();
-		if (thisSize >= otherSize) {
-			int newSize = thisSize - otherSize;
-			if (!checkOdd(newSize)) {
-				newSize = newSize + 1;
-				return newSize;
-			}
-		}
-		if (thisSize < otherSize) {
-			int newSize = otherSize - thisSize;
-			if (!checkOdd(newSize)) {
-				newSize = newSize + 1;
-				return newSize;
-			}
-		}
-		return newSize;
-	}
-*/
-
-	public int multiply(int thisSize, int otherSize) {
-		Matrix other = new Matrix();
-		otherSize = other.Size();
-		thisSize = this.Size();
-		int newSize = thisSize * otherSize;
-		if (!checkOdd(newSize)) {
-			newSize = newSize + 1;
-		}
-		return newSize;
-	}
 }
