@@ -1,68 +1,84 @@
-package AlgorithmStructures;
+package AlgorithmStructures.Experiment;
 
-public class CircularDoublyLinkedList<V> {
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+public class CircularDoublyLinkedList<V> extends LinkedListNode<V> {
 	
-	private Node head;
-	private Node tail;
+	private LinkedListNode<V> head;
+	private LinkedListNode<V> tail;
 	private int size = 0;
 	
-	CircularDoublyLinkedList(V data) {
-		head = new Node(data);
+	public CircularDoublyLinkedList(V data) {
+		super(data);
+		head = new LinkedListNode<V>(data);
 	}
 	
 	public CircularDoublyLinkedList() {
+		super(null);
 		head = null;
 	}
 	
-	public Node HeadNode() {
+	public LinkedListNode<V> HeadNode() {
 		return head;
 	}
 	
-	public Node TailNode() {
+	public LinkedListNode<V> TailNode() {
 		return tail;
 	}
 	
 	public boolean isEmpty() {
-		return head == null;
-	}
-	
-	public Node addAtStart(V data) {
-		Node node =  new Node(data);
-		if(size == 0) {
-			head = node;
-			tail = node;
-		} else {
-			node.next = head;
-			head.prev = node;
-			head = node;
+		if(head == null || tail == null) {
+			return true;
 		}
-		size++;
-		return node;
+		return false;
 	}
 	
-	public Node addAtEnd(V data) {
-		Node node =  new Node(data);
-		if(size == 0) {
+	public LinkedListNode<V> addAtStart(V data) {
+		LinkedListNode<V> node =  new LinkedListNode<V>(data);
+		if(size == 0 || head == null) {
+			node.next = node;
+			node.prev = node;
 			head = node;
-			tail = node;
+			tail = head;
 		} else {
-			tail.next = node;
 			node.prev = tail;
+			tail.next = node;
+			head.prev = node;
+			node.next = head;
+			head = node;
+		}
+		size++;
+		return node;
+	}
+	
+	public LinkedListNode<V> addAtEnd(V data) {
+		LinkedListNode<V> node =  new LinkedListNode<V>(data);
+		if(size == 0 || head == null) {
+			node.next = node;
+			node.prev = node;
+			head = node;
+			tail = head;
+		} else {
+			node.prev = tail;
+			tail.next = node;
+			head.prev = node;
+			node.next = head;
 			tail = node;
 		}
 		size++;
 		return node;
 	}
 	
-	public Node addAfter(Node prevNode, V data) {
+	public LinkedListNode<V> addAfter(LinkedListNode<V> prevNode, V data) {
 		if(prevNode == null) {
 			return null;
 		} else if(prevNode == tail) {
 			return addAtEnd(data);
 		} else {
-			Node node = new Node(data);
-			
-			Node nextNode = prevNode.next;
+			LinkedListNode<V> node = new LinkedListNode<V>(data);
+			LinkedListNode<V> nextNode = prevNode.next;
 			node.next = nextNode;
 			prevNode.next = node;
 			nextNode.prev = node;
@@ -72,18 +88,16 @@ public class CircularDoublyLinkedList<V> {
 		}
 	}
 	
-	
-	
-	/*
-	public Node addAtPos(V data, int index) {
-		Node node =  new Node(data);
+	public LinkedListNode<V> addAtPos(int index, V data) {
+		LinkedListNode<V> node =  new LinkedListNode<V>(data);
 		if(index == 1) {
-			addAtStart(data);
+			node = addAtStart(data);
+			//return;
 		}
-		Node other = head;
+		LinkedListNode<V> other = head;
 		for(int i = 2; i <= size; i++) {
 			if(i == index) {
-				Node tmp = other.next;
+				LinkedListNode<V> tmp = other.next;
 				other.next = node;
 				node.prev = other;
 				node.next = tmp;
@@ -93,13 +107,128 @@ public class CircularDoublyLinkedList<V> {
 		}
 		size++;
 		return node;
-	}*/
+	}
+	
+	public boolean headHasNext() {
+		if(head.next != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean headHasPrev() {
+		if(head.prev != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean tailHasNext() {
+		if(tail.next != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean tailHasPrev() {
+		if(tail.prev != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	public V searchNext(V data) {
+		while(headHasNext()) {
+			head = head.next;
+			if(head.data.equals(data)) {
+				return head.data;
+			}
+		}
+		return null;
+	}
+	
+	public V searchPrev(V data) {
+		while(tailHasPrev()) {
+			tail = tail.prev;
+			if(tail.data.equals(data)) {
+				return tail.data;
+			}
+		}
+		return null;
+	}
+	
+	public V quickSearch(V data) {
+		LinkedListNode<V> other = new LinkedListNode<V>(data);
+		if(other.data == null) {
+			return null;
+		}
+		if(countHead(data) <= countTail(data)) {
+			 other.data = searchNext(data);
+		}
+		if(countHead(data) > countTail(data)) {
+			other.data = searchPrev(data);
+		}
+		other.data = data;
+		return data;
+	}
+	
+	private int countHead(V data) {
+		int count = 0;
+		while(headHasNext()) {
+			head = head.next;
+			count++;
+			if(head.data.equals(data)) {
+				break;
+			}
+		}
+		return count;
+	}
+	
+	private int countTail(V data) {
+		int count = 0;
+		while(tailHasPrev()) {
+			tail = tail.prev;
+			count++;
+			if(tail.data.equals(data)) {
+				break;
+			}
+		}
+		return count;
+	}
+	
+	public int indexOf(V data) {
+		int index = 0;
+		while(headHasNext()) {
+			head = head.next;
+			index++;
+			if(head.data.equals(data)) {
+				break;
+			}
+		}
+		return index;
+	}
+	
+	public LinkedListNode<V> getNode(int i) {
+		LinkedListNode<V> p = null;
+		if(i < size / 2) {
+			p = head.next;
+			for(int j = 0; j < i; j++) {
+				p = p.next;
+			}
+		} else {
+			p = head;
+			for(int j = size; j > i; j--) {
+				p = p.prev;
+			}
+		}
+		return p;
+	}
 	
 	public V get(int index) {
 		if(index > size) {
 			return null;
 		}
-		Node node = head;
+		LinkedListNode<V> node = head;
 		while(index != 0) {
 			node = node.next;
 			index--;
@@ -127,8 +256,8 @@ public class CircularDoublyLinkedList<V> {
 		} else if(size == 1) {
 			deleteFromStart();
 		} else {
-			V x = tail.data;
-			Node prevTail = tail.prev;
+			V x = tail.getData();
+			LinkedListNode<V> prevTail = tail.prev;
 			tail = prevTail;
 			tail.next = null;
 			System.out.println("\ndeleting node " + x + " from end");
@@ -136,7 +265,7 @@ public class CircularDoublyLinkedList<V> {
 		}
 	}
 	
-	public void deleteNode(Node del) {
+	public void deleteNode(LinkedListNode<V> del) {
 		if(head == null || del == null) {
 			return;
 		}
@@ -155,74 +284,48 @@ public class CircularDoublyLinkedList<V> {
 		return;
 	}
 	
-	public void print() {
-		Node temp = head;
-		while(temp != null) {
-			System.out.print(" " + temp.data);
-			temp = temp.next;
+	public void deleteAtPos(int index) {
+		if(index == 1) {
+			if(size == 1) {
+				head = null;
+				tail = null;
+				size = 0;
+				return;
+			}
+		
+			head = head.next;
+			head.prev = tail;
+			tail.next = head;
+			size--;
+			return;
 		}
-		System.out.println();
+		
+		if(index == size) {
+			tail = tail.prev;
+			tail.next = head;
+			head.prev = tail;
+			size--;
+		}
+		
+		LinkedListNode<V> other = head.next;
+		for(int i = 2; i <= size; i++) {
+			if(i == index) {
+				LinkedListNode<V> p = other.prev;
+				LinkedListNode<V> n = other.next;
+				p.next = n;
+				n.prev = p;
+				size--;
+				return;
+			}
+			other = other.next;
+		}
 	}
 	
-	public void printInOrder(Node node) {
-		while(node != null) {
-			System.out.print(node.data + " ");
-			node = node.next;
+	public Iterator<V> iterator() {
+		Set<V> cdll = new HashSet<>();
+		for(int i = 0; i < size; i++) {
+			cdll.add(head.data);
 		}
-		System.out.println();
-	}
-	
-	public void printInReverse(Node node) {
-		Node last = null;
-		while(node != null) {
-			last = node;
-			node = node.next;
-		}
-		while(last != null) {
-			System.out.print(last.data + " ");
-			last = last.prev;
-		}
-	}
-	
-	public class Node {
-		private V data;
-		private Node next;
-		private Node prev;
-		
-		public Node(V key) {
-			data = key;
-			next = null;
-			prev = null;
-		}
-		
-		public Node(V key, Node n, Node p) {
-			data = key;
-			next = n;
-			prev = p;
-		}
-		
-		public void setLinkNext(Node n) {
-			next = n;
-		}
-		
-		public void setLinkPrev(Node p) {
-			prev = p;
-		}
-		
-		public void setData(V key) {
-			data = key;
-		}
-		
-		public Node getLinkNext() {
-			return next;
-		}
-		
-		public Node getLinkPrev() {
-			return prev;
-		}
-		
-		public V getData() {
-			return data;
-		}
+		return cdll.iterator();
 	}
 }
