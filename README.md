@@ -1,7 +1,7 @@
 # Java-Data-Structures-Algorithms
 The following Contains various helpful data structure classes.
 
-All Files in the Java-Data-Structures-Algorithms repository come under the Apache Licence 2.0.
+All Files in the Java-Data-Structures-Algorithms repository come under the Apache Licence 2.0. Unless the file states a different licence.
 
 # Apache Licence 2.0
 Copyright [2018] [Martin Kelly]
