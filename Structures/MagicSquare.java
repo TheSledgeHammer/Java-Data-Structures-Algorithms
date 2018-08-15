@@ -1,4 +1,4 @@
-package eclispe;
+package Structures;
 
 public class MagicSquare {
 
@@ -58,18 +58,17 @@ public class MagicSquare {
 	public int SquareSum() {
 		return sum;
 	}
-
+/*
 	public int[][] addMatricesBySize(Matrix a, Matrix b) {
 		int size = add(a.Size(), b.Size());
 		return generateSquare(size);
 	}
 
-/*
 	public int[][] subtractMatricesBySize(Matrix a, Matrix b) {
 		int size = subtract(a.Size(), b.Size());
 		return generateSquare(size);
 	}
-*/
+
 
 	public int[][] multiplyMatricesBySize(Matrix a, Matrix b) {
 		int size = multiply(a.Size(), b.Size());
@@ -81,5 +80,5 @@ public class MagicSquare {
 			return false;
 		}
 		return true;
-	}
+	}*/
 }

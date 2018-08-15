@@ -1,21 +1,21 @@
-package AlgorithmStructures.Experiment;
+package Structures;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class CircularDoublyLinkedList<V> extends LinkedListNode<V> {
+public class DoublyLinkedList<V> extends LinkedListNode<V> {
 	
 	private LinkedListNode<V> head;
 	private LinkedListNode<V> tail;
 	private int size = 0;
 	
-	public CircularDoublyLinkedList(V data) {
-		super(data);
-		head = new LinkedListNode<V>(data);
+	public DoublyLinkedList(V key) {
+		super(key);
+		head = new LinkedListNode<V>(key);
 	}
 	
-	public CircularDoublyLinkedList() {
+	public DoublyLinkedList() {
 		super(null);
 		head = null;
 	}
@@ -36,17 +36,16 @@ public class CircularDoublyLinkedList<V> extends LinkedListNode<V> {
 	}
 	
 	public LinkedListNode<V> addAtStart(V data) {
-		LinkedListNode<V> node =  new LinkedListNode<V>(data);
-		if(size == 0 || head == null) {
+		LinkedListNode<V> node = new LinkedListNode<V>(data);
+		if(size == 0) {
 			node.next = node;
 			node.prev = node;
 			head = node;
-			tail = head;
+			tail = node;
+			
 		} else {
-			node.prev = tail;
-			tail.next = node;
-			head.prev = node;
 			node.next = head;
+			head.prev = node;
 			head = node;
 		}
 		size++;
@@ -55,16 +54,14 @@ public class CircularDoublyLinkedList<V> extends LinkedListNode<V> {
 	
 	public LinkedListNode<V> addAtEnd(V data) {
 		LinkedListNode<V> node =  new LinkedListNode<V>(data);
-		if(size == 0 || head == null) {
+		if(size == 0) {
 			node.next = node;
 			node.prev = node;
 			head = node;
-			tail = head;
+			tail = node;
 		} else {
-			node.prev = tail;
 			tail.next = node;
-			head.prev = node;
-			node.next = head;
+			node.prev = tail;
 			tail = node;
 		}
 		size++;
@@ -78,6 +75,7 @@ public class CircularDoublyLinkedList<V> extends LinkedListNode<V> {
 			return addAtEnd(data);
 		} else {
 			LinkedListNode<V> node = new LinkedListNode<V>(data);
+			
 			LinkedListNode<V> nextNode = prevNode.next;
 			node.next = nextNode;
 			prevNode.next = node;
@@ -88,25 +86,20 @@ public class CircularDoublyLinkedList<V> extends LinkedListNode<V> {
 		}
 	}
 	
-	public LinkedListNode<V> addAtPos(int index, V data) {
-		LinkedListNode<V> node =  new LinkedListNode<V>(data);
-		if(index == 1) {
-			node = addAtStart(data);
-			//return;
-		}
-		LinkedListNode<V> other = head;
-		for(int i = 2; i <= size; i++) {
-			if(i == index) {
-				LinkedListNode<V> tmp = other.next;
-				other.next = node;
-				node.prev = other;
-				node.next = tmp;
-				tmp.prev = node;
+	public LinkedListNode<V> getNode(int i) {
+		LinkedListNode<V> p = null;
+		if(i < size / 2) {
+			p = head.next;
+			for(int j = 0; j < i; j++) {
+				p = p.next;
 			}
-			other = other.next;
+		} else {
+			p = head;
+			for(int j = size; j > i; j--) {
+				p = p.prev;
+			}
 		}
-		size++;
-		return node;
+		return p;
 	}
 	
 	public boolean headHasNext() {
@@ -195,7 +188,7 @@ public class CircularDoublyLinkedList<V> extends LinkedListNode<V> {
 		}
 		return count;
 	}
-	
+		
 	public int indexOf(V data) {
 		int index = 0;
 		while(headHasNext()) {
@@ -208,27 +201,12 @@ public class CircularDoublyLinkedList<V> extends LinkedListNode<V> {
 		return index;
 	}
 	
-	public LinkedListNode<V> getNode(int i) {
-		LinkedListNode<V> p = null;
-		if(i < size / 2) {
-			p = head.next;
-			for(int j = 0; j < i; j++) {
-				p = p.next;
-			}
-		} else {
-			p = head;
-			for(int j = size; j > i; j--) {
-				p = p.prev;
-			}
-		}
-		return p;
-	}
-	
 	public V get(int index) {
 		if(index > size) {
 			return null;
 		}
 		LinkedListNode<V> node = head;
+		//index-1
 		while(index != 0) {
 			node = node.next;
 			index--;
@@ -256,7 +234,7 @@ public class CircularDoublyLinkedList<V> extends LinkedListNode<V> {
 		} else if(size == 1) {
 			deleteFromStart();
 		} else {
-			V x = tail.getData();
+			V x = tail.data;
 			LinkedListNode<V> prevTail = tail.prev;
 			tail = prevTail;
 			tail.next = null;
@@ -284,48 +262,11 @@ public class CircularDoublyLinkedList<V> extends LinkedListNode<V> {
 		return;
 	}
 	
-	public void deleteAtPos(int index) {
-		if(index == 1) {
-			if(size == 1) {
-				head = null;
-				tail = null;
-				size = 0;
-				return;
-			}
-		
-			head = head.next;
-			head.prev = tail;
-			tail.next = head;
-			size--;
-			return;
-		}
-		
-		if(index == size) {
-			tail = tail.prev;
-			tail.next = head;
-			head.prev = tail;
-			size--;
-		}
-		
-		LinkedListNode<V> other = head.next;
-		for(int i = 2; i <= size; i++) {
-			if(i == index) {
-				LinkedListNode<V> p = other.prev;
-				LinkedListNode<V> n = other.next;
-				p.next = n;
-				n.prev = p;
-				size--;
-				return;
-			}
-			other = other.next;
-		}
-	}
-	
 	public Iterator<V> iterator() {
-		Set<V> cdll = new HashSet<>();
+		Set<V> dll = new HashSet<>();
 		for(int i = 0; i < size; i++) {
-			cdll.add(head.data);
+			dll.add(head.data);
 		}
-		return cdll.iterator();
+		return dll.iterator();
 	}
 }

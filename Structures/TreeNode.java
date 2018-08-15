@@ -1,4 +1,4 @@
-package AlgorithmStructures.Experiment;
+package Structures;
 
 public class TreeNode<V> {
 	

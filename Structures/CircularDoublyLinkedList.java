@@ -1,21 +1,21 @@
-package AlgorithmStructures.Experiment;
+package Structures;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class DoublyLinkedList<V> extends LinkedListNode<V> {
+public class CircularDoublyLinkedList<V> extends LinkedListNode<V> {
 	
 	private LinkedListNode<V> head;
 	private LinkedListNode<V> tail;
 	private int size = 0;
 	
-	public DoublyLinkedList(V key) {
-		super(key);
-		head = new LinkedListNode<V>(key);
+	public CircularDoublyLinkedList(V data) {
+		super(data);
+		head = new LinkedListNode<V>(data);
 	}
 	
-	public DoublyLinkedList() {
+	public CircularDoublyLinkedList() {
 		super(null);
 		head = null;
 	}
@@ -36,16 +36,17 @@ public class DoublyLinkedList<V> extends LinkedListNode<V> {
 	}
 	
 	public LinkedListNode<V> addAtStart(V data) {
-		LinkedListNode<V> node = new LinkedListNode<V>(data);
-		if(size == 0) {
+		LinkedListNode<V> node =  new LinkedListNode<V>(data);
+		if(size == 0 || head == null) {
 			node.next = node;
 			node.prev = node;
 			head = node;
-			tail = node;
-			
+			tail = head;
 		} else {
-			node.next = head;
+			node.prev = tail;
+			tail.next = node;
 			head.prev = node;
+			node.next = head;
 			head = node;
 		}
 		size++;
@@ -54,14 +55,16 @@ public class DoublyLinkedList<V> extends LinkedListNode<V> {
 	
 	public LinkedListNode<V> addAtEnd(V data) {
 		LinkedListNode<V> node =  new LinkedListNode<V>(data);
-		if(size == 0) {
+		if(size == 0 || head == null) {
 			node.next = node;
 			node.prev = node;
 			head = node;
-			tail = node;
+			tail = head;
 		} else {
-			tail.next = node;
 			node.prev = tail;
+			tail.next = node;
+			head.prev = node;
+			node.next = head;
 			tail = node;
 		}
 		size++;
@@ -75,7 +78,6 @@ public class DoublyLinkedList<V> extends LinkedListNode<V> {
 			return addAtEnd(data);
 		} else {
 			LinkedListNode<V> node = new LinkedListNode<V>(data);
-			
 			LinkedListNode<V> nextNode = prevNode.next;
 			node.next = nextNode;
 			prevNode.next = node;
@@ -86,20 +88,25 @@ public class DoublyLinkedList<V> extends LinkedListNode<V> {
 		}
 	}
 	
-	public LinkedListNode<V> getNode(int i) {
-		LinkedListNode<V> p = null;
-		if(i < size / 2) {
-			p = head.next;
-			for(int j = 0; j < i; j++) {
-				p = p.next;
-			}
-		} else {
-			p = head;
-			for(int j = size; j > i; j--) {
-				p = p.prev;
-			}
+	public LinkedListNode<V> addAtPos(int index, V data) {
+		LinkedListNode<V> node =  new LinkedListNode<V>(data);
+		if(index == 1) {
+			node = addAtStart(data);
+			//return;
 		}
-		return p;
+		LinkedListNode<V> other = head;
+		for(int i = 2; i <= size; i++) {
+			if(i == index) {
+				LinkedListNode<V> tmp = other.next;
+				other.next = node;
+				node.prev = other;
+				node.next = tmp;
+				tmp.prev = node;
+			}
+			other = other.next;
+		}
+		size++;
+		return node;
 	}
 	
 	public boolean headHasNext() {
@@ -188,7 +195,7 @@ public class DoublyLinkedList<V> extends LinkedListNode<V> {
 		}
 		return count;
 	}
-		
+	
 	public int indexOf(V data) {
 		int index = 0;
 		while(headHasNext()) {
@@ -201,12 +208,27 @@ public class DoublyLinkedList<V> extends LinkedListNode<V> {
 		return index;
 	}
 	
+	public LinkedListNode<V> getNode(int i) {
+		LinkedListNode<V> p = null;
+		if(i < size / 2) {
+			p = head.next;
+			for(int j = 0; j < i; j++) {
+				p = p.next;
+			}
+		} else {
+			p = head;
+			for(int j = size; j > i; j--) {
+				p = p.prev;
+			}
+		}
+		return p;
+	}
+	
 	public V get(int index) {
 		if(index > size) {
 			return null;
 		}
 		LinkedListNode<V> node = head;
-		//index-1
 		while(index != 0) {
 			node = node.next;
 			index--;
@@ -234,7 +256,7 @@ public class DoublyLinkedList<V> extends LinkedListNode<V> {
 		} else if(size == 1) {
 			deleteFromStart();
 		} else {
-			V x = tail.data;
+			V x = tail.getData();
 			LinkedListNode<V> prevTail = tail.prev;
 			tail = prevTail;
 			tail.next = null;
@@ -262,11 +284,48 @@ public class DoublyLinkedList<V> extends LinkedListNode<V> {
 		return;
 	}
 	
-	public Iterator<V> iterator() {
-		Set<V> dll = new HashSet<>();
-		for(int i = 0; i < size; i++) {
-			dll.add(head.data);
+	public void deleteAtPos(int index) {
+		if(index == 1) {
+			if(size == 1) {
+				head = null;
+				tail = null;
+				size = 0;
+				return;
+			}
+		
+			head = head.next;
+			head.prev = tail;
+			tail.next = head;
+			size--;
+			return;
 		}
-		return dll.iterator();
+		
+		if(index == size) {
+			tail = tail.prev;
+			tail.next = head;
+			head.prev = tail;
+			size--;
+		}
+		
+		LinkedListNode<V> other = head.next;
+		for(int i = 2; i <= size; i++) {
+			if(i == index) {
+				LinkedListNode<V> p = other.prev;
+				LinkedListNode<V> n = other.next;
+				p.next = n;
+				n.prev = p;
+				size--;
+				return;
+			}
+			other = other.next;
+		}
+	}
+	
+	public Iterator<V> iterator() {
+		Set<V> cdll = new HashSet<>();
+		for(int i = 0; i < size; i++) {
+			cdll.add(head.data);
+		}
+		return cdll.iterator();
 	}
 }

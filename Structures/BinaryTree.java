@@ -1,4 +1,4 @@
-package AlgorithmStructures.Experiment;
+package Structures;
 
 import java.util.LinkedList;
 import java.util.Queue;
