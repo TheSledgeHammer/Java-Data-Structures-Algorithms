@@ -1,5 +1,3 @@
-package Structures;
-
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -34,6 +32,10 @@ public class DoublyLinkedList<V> extends LinkedListNode<V> {
 		}
 		return false;
 	}
+
+    public int size() {
+        return size;
+    }
 	
 	public LinkedListNode<V> addAtStart(V data) {
 		LinkedListNode<V> node = new LinkedListNode<V>(data);
@@ -212,10 +214,6 @@ public class DoublyLinkedList<V> extends LinkedListNode<V> {
 			index--;
 		}
 		return node.data;
-	}
-	
-	public int size() {
-		return size;
 	}
 	
 	public void deleteFromStart() {

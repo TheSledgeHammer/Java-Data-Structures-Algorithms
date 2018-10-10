@@ -1,0 +1,5 @@
+apply plugin: 'maven'
+apply from: rootProject.file('git-maven.gradle')
+
+group = "com.thesledgehammer.java-data-structures"
+version = '1.0'

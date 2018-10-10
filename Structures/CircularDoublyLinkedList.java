@@ -1,5 +1,3 @@
-package Structures;
-
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -33,6 +31,10 @@ public class CircularDoublyLinkedList<V> extends LinkedListNode<V> {
 			return true;
 		}
 		return false;
+	}
+
+	public int size() {
+		return size;
 	}
 	
 	public LinkedListNode<V> addAtStart(V data) {
@@ -92,7 +94,6 @@ public class CircularDoublyLinkedList<V> extends LinkedListNode<V> {
 		LinkedListNode<V> node =  new LinkedListNode<V>(data);
 		if(index == 1) {
 			node = addAtStart(data);
-			//return;
 		}
 		LinkedListNode<V> other = head;
 		for(int i = 2; i <= size; i++) {
@@ -236,10 +237,6 @@ public class CircularDoublyLinkedList<V> extends LinkedListNode<V> {
 		return node.data;
 	}
 	
-	public int size() {
-		return size;
-	}
-	
 	public void deleteFromStart() {
 		if(size == 0) {
 			return;
@@ -256,7 +253,7 @@ public class CircularDoublyLinkedList<V> extends LinkedListNode<V> {
 		} else if(size == 1) {
 			deleteFromStart();
 		} else {
-			V x = tail.getData();
+			V x = tail.data;
 			LinkedListNode<V> prevTail = tail.prev;
 			tail = prevTail;
 			tail.next = null;

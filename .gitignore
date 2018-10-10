@@ -11,6 +11,7 @@
 *.iml
 *.ipr
 *.iws
+*.xml
 /bin
 /build
 /config
@@ -26,3 +27,6 @@ usernamecache.json
 usercache.json
 options.txt
 .classpath
+.gradle/vcsWorkingDirs/gc.properties
+.gradle/buildOutputCleanup/cache.properties
+Structures/test.java

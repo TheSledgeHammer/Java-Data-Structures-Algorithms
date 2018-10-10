@@ -1,5 +1,3 @@
-package Structures;
-
 public class MagicSquare {
 
 	private static int[][] magicSquare;

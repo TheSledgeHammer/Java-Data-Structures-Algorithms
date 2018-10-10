@@ -1,44 +1,39 @@
-package Structures;
-
-public class LinkedListNode<V> implements ILinkedListNode<V> {
+public class LinkedListNode<V> {
 	
-	protected V data;
-	protected LinkedListNode<V> prev;
-	protected LinkedListNode<V> next;
+	V data;
+	LinkedListNode<V> prev;
+	LinkedListNode<V> next;
+	LinkedListNode<V> child;
 	
 	public LinkedListNode(V key) {
 		data = key;
 		next = null;
 		prev = null;
+		child = null;
 	}
-	
-	@Override
+	/*
 	public void setLinkNext(LinkedListNode<V> n) {
-		this.next = n;
+		next = n;
 	}
 
-	@Override
 	public void setLinkPrev(LinkedListNode<V> p) {
-		this.prev = p;
+		prev = p;
 	}
 
-	@Override
 	public void setData(V key) {
 		this.data = key;
 	}
 
-	@Override
 	public LinkedListNode<V> getLinkNext() {
 		return next;
 	}
 
-	@Override
 	public LinkedListNode<V> getLinkPrev() {
 		return prev;
 	}
 
-	@Override
 	public V getData() {
 		return data;
 	}
+	*/
 }

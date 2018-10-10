@@ -1,5 +1,3 @@
-package Structures;
-
 public class TreeNode<V> {
 	
 	public V data;
