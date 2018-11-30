@@ -2,6 +2,7 @@
 The following Contains various helpful data structure classes.
 
 Included Data Structures:
+
 Lists:
 
 SinglyLinkedList
