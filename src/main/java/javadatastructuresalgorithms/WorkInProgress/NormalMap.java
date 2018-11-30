@@ -14,7 +14,7 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package src.main.java.javadatastructuresalgorithms.DataStructures;
+package src.main.java.javadatastructuresalgorithms.WorkInProgress;
 
 
 import main.java.datastructuresalgorithms.DataStructureExperimental.NodeTypes.HashEntry;
