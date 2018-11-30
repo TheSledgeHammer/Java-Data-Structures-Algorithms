@@ -1,20 +1,41 @@
+/**************************************************************************************************
+ * Copyright [2018] [Martin Kelly]                                                                *
+ *                                                                                                *
+ * Licensed under the Apache License, Version 2.0 (the "License");                                *
+ * you may not use this file except in compliance with the License.                               *
+ * You may obtain a copy of the License at                                                        *
+ *                                                                                                *
+ * http://www.apache.org/licenses/LICENSE-2.0                                                     *
+ *                                                                                                *
+ * Unless required by applicable law or agreed to in writing, software                            *
+ * distributed under the License is distributed on an "AS IS" BASIS,                              *
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.                       *
+ * See the License for the specific language governing permissions and                            *
+ * limitations under the License.                                                                 *
+ **************************************************************************************************/
+
+package main.java.datastructuresalgorithms.DataStructures;
+
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class DoublyLinkedList<V> extends LinkedListNode<V> {
-	
+/*
+TODO:
+Fix infinite runtime loop with multiple values
+ */
+public class MultiLevelDoublyLinkedList<V> {
+
 	private LinkedListNode<V> head;
 	private LinkedListNode<V> tail;
 	private int size = 0;
-	
-	public DoublyLinkedList(V key) {
-		super(key);
+	private int sizeChild = 0;
+
+	public MultiLevelDoublyLinkedList(V key) {
 		head = new LinkedListNode<V>(key);
 	}
-	
-	public DoublyLinkedList() {
-		super(null);
+
+	public MultiLevelDoublyLinkedList() {
 		head = null;
 	}
 	
@@ -25,6 +46,15 @@ public class DoublyLinkedList<V> extends LinkedListNode<V> {
 	public LinkedListNode<V> TailNode() {
 		return tail;
 	}
+
+	/*public ChildNode<V> HeadChildNode() {
+		return head.childNode;
+	}
+
+	public ChildNode<V> TailChildNode() {
+		return tail.childNode;
+	}
+	*/
 	
 	public boolean isEmpty() {
 		if(head == null || tail == null) {
@@ -103,7 +133,7 @@ public class DoublyLinkedList<V> extends LinkedListNode<V> {
 		}
 		return p;
 	}
-	
+
 	public boolean headHasNext() {
 		if(head.next != null) {
 			return true;
@@ -204,16 +234,11 @@ public class DoublyLinkedList<V> extends LinkedListNode<V> {
 	}
 	
 	public V get(int index) {
-		if(index > size) {
-			return null;
+		if(index >= 0 && index < size) {
+			index++;
+			return getNode(index).data;
 		}
-		LinkedListNode<V> node = head;
-		//index-1
-		while(index != 0) {
-			node = node.next;
-			index--;
-		}
-		return node.data;
+		return null;
 	}
 	
 	public void deleteFromStart() {
@@ -267,4 +292,121 @@ public class DoublyLinkedList<V> extends LinkedListNode<V> {
 		}
 		return dll.iterator();
 	}
+//ChildNode
+	public int sizeChild() {
+		return sizeChild;
+	}
+
+	public ChildNode<V> addChild(V data) {
+		int index = indexOf(data);
+		ChildNode<V> node = new ChildNode<>(data);
+
+		if(sizeChild == 0) {
+			node.childNode.next = node.childNode;
+			node.childNode.prev = node.childNode;
+			head.childNode = node.childNode;
+			tail.childNode = node.childNode;
+		} else {
+			node.childNode.next = head.childNode;
+			head.childNode.prev = node.childNode;
+			head.childNode = node.childNode;
+		}
+		size++;
+		return node;
+	}
+
+	public class LinkedListNode<V> {
+
+		private V data;
+		private LinkedListNode<V> prev;
+		private LinkedListNode<V> next;
+		private ChildNode<LinkedListNode> childNode;
+
+		public LinkedListNode(V key) {
+			this.data = key;
+			next = null;
+			prev = null;
+			childNode = null;
+		}
+
+		public void setData(V key) {
+			this.data = key;
+		}
+
+		public V getData() {
+			return data;
+		}
+
+		public void setLinkNext(LinkedListNode<V> n) {
+			next = n;
+		}
+
+		public void setLinkPrev(LinkedListNode<V> p) {
+			prev = p;
+		}
+
+		public void setChildNode(ChildNode<LinkedListNode> c) {
+			childNode = c;
+		}
+
+		public LinkedListNode<V> getLinkNext() {
+			return next;
+		}
+
+		public LinkedListNode<V> getLinkPrev() {
+			return prev;
+		}
+
+		public ChildNode<LinkedListNode> getChildNode() {
+			return childNode;
+		}
+	}
+
+	public class ChildNode<V> extends LinkedListNode<V> {
+
+		private ChildNode<LinkedListNode> childNode;
+		private LinkedListNode<V> prev;
+		private LinkedListNode<V> next;
+
+		public ChildNode(V value) {
+			super(value);
+			next = null;
+			prev = null;
+			childNode = head.childNode;
+		}
+	}
+/*
+	public class ChildNode<V>  {
+		private V childData;
+		private int index;
+
+		private ChildNode<V> prevChild;
+		private ChildNode<V> nextChild;
+
+
+		public ChildNode(int index, V key, V childKey) {
+			super(key);
+			this.childData = childKey;
+			this.index = index;
+			nextChild = null;
+			prevChild = null;
+			children.next.
+		}
+
+		void setChildNodeIndex(int index) {
+			this.index = index;
+		}
+
+		public int getChildNodeIndex() {
+			return index;
+		}
+
+		public void setChildNodeData(V childKey) {
+			this.childData = childKey;
+		}
+
+		public V getChildNodeData() {
+			return childData;
+		}
+	}*/
 }

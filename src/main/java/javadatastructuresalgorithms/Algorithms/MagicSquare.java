@@ -1,3 +1,5 @@
+package src.main.java.javadatastructuresalgorithms.Algorithms;
+
 public class MagicSquare {
 
 	private static int[][] magicSquare;
