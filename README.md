@@ -1,7 +1,7 @@
 # Java-Data-Structures-Algorithms
 The following Contains various helpful data structure classes.
 
-### Included Data Structures:
+### Includes:
 
 #### Lists:
 * SinglyLinkedList
@@ -19,7 +19,7 @@ The following Contains various helpful data structure classes.
 * Trie: Work in Progress
 
 #### Hashing:
-* HashList: Same as a list, but uses a Hash Constant to determine the index of the value stored. Backed by a DoublyLinkedList: Work in Progress: No delete function
+* HashList: Same as a list, but uses a Hash Constant to determine the index of the value stored. Backed by a Map: Work in Progress: No delete function
 * HashTableOA: Open Addressing based HashTable: Work in Progress
 * HashTableSC: Seperate Chaining base HashTable: Work in Progress
 
