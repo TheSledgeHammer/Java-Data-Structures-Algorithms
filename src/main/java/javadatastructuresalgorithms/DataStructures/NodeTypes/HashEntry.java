@@ -14,7 +14,7 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package main.java.datastructuresalgorithms.DataStructureExperimental.NodeTypes;
+package src.main.java.javadatastructuresalgorithms.DataStructures.NodeTypes;
 
 public class HashEntry<K,V> {
 

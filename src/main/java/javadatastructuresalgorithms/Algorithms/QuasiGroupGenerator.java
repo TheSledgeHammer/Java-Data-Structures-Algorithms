@@ -22,6 +22,7 @@ public class QuasiGroupGenerator {
 	
 	private int size;
 	private int numbersNeeded;
+	private int idxZero = 0;
 	private HashMap<Integer, Set<Integer>> row = new LinkedHashMap<>();
 
 	public QuasiGroupGenerator(int size) {
@@ -82,18 +83,45 @@ public class QuasiGroupGenerator {
 		return arr;
 	}
 
-	/* Create a Quasigroup of order size aka(Latin Square) */
+	/* Create a Quasigroup of order size aka(Latin Square)
+	 * Prints in a Readable Table Format
+	 */
 	private void createQuasiPart2() {
 		for(int i = 0; i < Size(); i++) {
-			this.row.put(i, createQuasiPart1());
+			this.row.put(i, QuasiModification(createQuasiPart1()));
+				//System.out.println(/*"Row " + i + */getRow(i));
 		}
 	}
 
-	/* Prints QuasiGroup as a Table */
-	public void print() {
-		for(int i = 0; i < Size(); i++) {
+	/* Prints QuasiGroup as a Table
+	*  Don't use this method with QuasiModification!
+	*/
+	public void Print() {
+		/*for(int i = 0; i < Size(); i++) {
 			this.row.put(i, createQuasiPart1());
-			System.out.println(/*"Row " + i + */getRow(i));
+			this.row.put(i, QuasiModification(createQuasiPart1()));
+			System.out.println("Row " + i + getRow(i));
+		}*/
+	}
+
+	/*~Hacky Approach~ To Randomized QuasiGroup:
+		Switches Zero Digits in each Row to match with row and column number diagonally
+		e.g. Value at Row 0 & Col 0 = 0, Row 1 & Col 1 = 0 etc
+		Original value at that location are placed where 0 was.
+	 */
+	private Set<Integer> QuasiModification(Set<Integer> oldRow) {
+		LinkedList<Integer> arrL = new LinkedList<>();
+		arrL.addAll(oldRow);
+		for(int i = 0; i < Size(); i++) {
+			if(arrL.get(i) == 0) {
+				int temp = arrL.get(idxZero);
+				arrL.set(idxZero, 0);
+				arrL.set(i, temp);
+			}
 		}
+		idxZero++;
+		Set<Integer> newRow = new LinkedHashSet<>();
+		newRow.addAll(arrL);
+		return newRow;
 	}
 }

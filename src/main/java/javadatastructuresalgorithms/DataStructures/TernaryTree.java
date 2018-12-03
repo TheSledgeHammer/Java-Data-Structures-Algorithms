@@ -16,7 +16,7 @@
 
 package src.main.java.javadatastructuresalgorithms.DataStructures;
 
-import main.java.datastructuresalgorithms.DataStructureExperimental.NodeTypes.TreeNode;
+import src.main.java.javadatastructuresalgorithms.DataStructures.NodeTypes.TreeNode;
 
 public class TernaryTree<V> {
 

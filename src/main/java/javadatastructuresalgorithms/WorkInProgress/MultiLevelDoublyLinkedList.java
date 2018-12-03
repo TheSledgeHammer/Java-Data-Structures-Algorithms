@@ -14,7 +14,7 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package main.java.datastructuresalgorithms.DataStructures;
+package src.main.java.javadatastructuresalgorithms.WorkInProgress;
 
 import java.util.HashSet;
 import java.util.Iterator;

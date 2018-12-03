@@ -15,6 +15,7 @@ The following Contains various helpful data structure classes.
 * BinaryTree
 * TernaryTree
 * BinaryIndexedTree (Aka Fenwick Tree):
+* TernaryIndexedTree: Self explanatory, a Fenwick Tree with 3 nodes instead of 2.
 * Trie: Work in Progress
 
 #### Hashing:

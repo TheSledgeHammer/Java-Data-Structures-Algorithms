@@ -17,6 +17,8 @@
 package src.main.java.javadatastructuresalgorithms.Algorithms;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class DammAlgorithm {
 
@@ -24,6 +26,7 @@ public class DammAlgorithm {
     private ArrayList<Integer> interim = new ArrayList<>();
     private int checkDigit;
     private int value;
+    public int storeIndex = 0;
 
     public DammAlgorithm(int value, int size) {
         setValue(value);
@@ -73,8 +76,9 @@ public class DammAlgorithm {
         return checkDigit;
     }
 
+    //Default is false
     public void printQuasiGroup() {
-        QGG.print();
+        QGG.Print();
     }
 
     public void CalculateChecksum() {

@@ -16,7 +16,7 @@
 
 package src.main.java.javadatastructuresalgorithms.DataStructures;
 
-import main.java.datastructuresalgorithms.DataStructureExperimental.NodeTypes.ListNode;
+import src.main.java.javadatastructuresalgorithms.DataStructures.NodeTypes.ListNode;
 
 import java.util.HashSet;
 import java.util.Iterator;

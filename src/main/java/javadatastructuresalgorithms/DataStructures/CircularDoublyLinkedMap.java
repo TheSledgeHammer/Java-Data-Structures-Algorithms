@@ -16,7 +16,7 @@
 
 package src.main.java.javadatastructuresalgorithms.DataStructures;
 
-import main.java.datastructuresalgorithms.DataStructureExperimental.NodeTypes.LinkedMapNode;
+import src.main.java.javadatastructuresalgorithms.DataStructures.NodeTypes.LinkedMapNode;
 
 public class CircularDoublyLinkedMap<K,V> {
 

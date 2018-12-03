@@ -16,8 +16,7 @@
 
 package src.main.java.javadatastructuresalgorithms.WorkInProgress;
 
-
-import main.java.datastructuresalgorithms.DataStructureExperimental.NodeTypes.HashEntry;
+import src.main.java.javadatastructuresalgorithms.DataStructures.NodeTypes.HashEntry;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -16,7 +16,7 @@
 
 package src.main.java.javadatastructuresalgorithms.WorkInProgress;
 
-import main.java.datastructuresalgorithms.DataStructureExperimental.NodeTypes.ListNode;
+import src.main.java.javadatastructuresalgorithms.DataStructures.NodeTypes.ListNode;
 
 public class Trie<V> {
 

@@ -14,7 +14,7 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package main.java.datastructuresalgorithms.DataStructures;
+package src.main.java.javadatastructuresalgorithms.WorkInProgress;
 
 /*
 public class BinaryTree<V> extends BinaryTreeNode<V> {

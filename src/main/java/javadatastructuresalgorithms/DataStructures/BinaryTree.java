@@ -16,7 +16,7 @@
 
 package src.main.java.javadatastructuresalgorithms.DataStructures;
 
-import main.java.datastructuresalgorithms.DataStructureExperimental.NodeTypes.TreeNode;
+import src.main.java.javadatastructuresalgorithms.DataStructures.NodeTypes.TreeNode;
 
 /**
  * A Binary Tree implementation that's backed by a CircularDoublyLinkedList<V>.
@@ -34,6 +34,13 @@ public class BinaryTree<V> {
 
     public BinaryTree() {
         root = new CircularDoublyLinkedList<TreeNode<V>>();
+    }
+
+    public boolean isEmpty() {
+        if(root == null) {
+            return true;
+        }
+        return false;
     }
 
     public int size() {

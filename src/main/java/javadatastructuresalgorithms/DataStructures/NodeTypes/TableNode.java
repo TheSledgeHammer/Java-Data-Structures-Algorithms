@@ -14,9 +14,9 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package main.java.datastructuresalgorithms.DataStructureExperimental.NodeTypes;
+package src.main.java.javadatastructuresalgorithms.DataStructures.NodeTypes;
 
-import main.java.datastructuresalgorithms.DataStructureExperimental.NodeInterfaces.ITableNode;
+import src.main.java.javadatastructuresalgorithms.DataStructures.NodeInterfaces.ITableNode;
 
 public class TableNode<R,C,V> implements ITableNode<R,C,V> {
 

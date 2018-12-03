@@ -14,9 +14,9 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package main.java.datastructuresalgorithms.DataStructureExperimental.NodeTypes;
+package src.main.java.javadatastructuresalgorithms.DataStructures.NodeTypes;
 
-import main.java.datastructuresalgorithms.DataStructureExperimental.NodeInterfaces.INodeValue;
+import src.main.java.javadatastructuresalgorithms.DataStructures.NodeInterfaces.INodeValue;
 
 public class TreeNode<V> implements INodeValue<V> {
 
