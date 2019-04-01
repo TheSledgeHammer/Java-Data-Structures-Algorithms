@@ -14,7 +14,7 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package src.main.java.javadatastructuresalgorithms.WorkInProgress;
+package javadatastructuresalgorithms.WorkInProgress;
 
 public class FibonacciNode<V>  {
 

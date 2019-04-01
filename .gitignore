@@ -13,3 +13,6 @@
 *.iws
 *.xml
 /out
+git-maven.gradle
+mavenBintray.gradle
+gradle.properties

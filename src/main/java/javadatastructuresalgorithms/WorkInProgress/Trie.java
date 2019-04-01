@@ -14,9 +14,9 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package src.main.java.javadatastructuresalgorithms.WorkInProgress;
+package javadatastructuresalgorithms.WorkInProgress;
 
-import src.main.java.javadatastructuresalgorithms.DataStructures.NodeTypes.ListNode;
+import javadatastructuresalgorithms.DataStructures.NodeTypes.ListNode;
 
 public class Trie<V> {
 

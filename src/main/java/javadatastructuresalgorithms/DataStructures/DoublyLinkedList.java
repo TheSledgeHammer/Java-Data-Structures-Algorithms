@@ -14,9 +14,9 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package src.main.java.javadatastructuresalgorithms.DataStructures;
+package javadatastructuresalgorithms.DataStructures;
 
-import src.main.java.javadatastructuresalgorithms.DataStructures.NodeTypes.ListNode;
+import javadatastructuresalgorithms.DataStructures.NodeTypes.ListNode;
 
 import java.util.HashSet;
 import java.util.Iterator;

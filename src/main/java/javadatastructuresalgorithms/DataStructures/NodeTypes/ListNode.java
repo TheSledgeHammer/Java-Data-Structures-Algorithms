@@ -14,9 +14,9 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package src.main.java.javadatastructuresalgorithms.DataStructures.NodeTypes;
+package javadatastructuresalgorithms.DataStructures.NodeTypes;
 
-import src.main.java.javadatastructuresalgorithms.DataStructures.NodeInterfaces.INodeValue;
+import javadatastructuresalgorithms.DataStructures.NodeInterfaces.INodeValue;
 
 public class ListNode<V> implements INodeValue<V> {
 

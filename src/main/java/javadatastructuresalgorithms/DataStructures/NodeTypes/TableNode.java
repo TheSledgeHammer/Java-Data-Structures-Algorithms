@@ -14,18 +14,18 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package src.main.java.javadatastructuresalgorithms.DataStructures.NodeTypes;
+package javadatastructuresalgorithms.DataStructures.NodeTypes;
 
-import src.main.java.javadatastructuresalgorithms.DataStructures.NodeInterfaces.ITableNode;
+import javadatastructuresalgorithms.DataStructures.NodeInterfaces.ITableNode;
 
 public class TableNode<R,C,V> implements ITableNode<R,C,V> {
 
-    public R row;
-    public C column;
-    public V value;
+    private R row;
+    private C column;
+    private V value;
 
-    public TableNode<R,C,V> next;
-    public TableNode<R,C,V> prev;
+    private TableNode<R,C,V> next;
+    private TableNode<R,C,V> prev;
 
     public TableNode(R row, C column, V value) {
         setRow(row);

@@ -14,11 +14,9 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package src.main.java.javadatastructuresalgorithms.Algorithms;
+package javadatastructuresalgorithms.Algorithms;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 public class DammAlgorithm {
 
@@ -48,6 +46,26 @@ public class DammAlgorithm {
         setQuasiGroupGenerator(size);
     }
 
+    public DammAlgorithm(int value, int size, boolean isPrintable) {
+        setValue(value);
+        setQuasiGroupGenerator(size, isPrintable);
+    }
+
+    public DammAlgorithm(int value, String size, boolean isPrintable) {
+        setValue(value);
+        setQuasiGroupGenerator(size, isPrintable);
+    }
+
+    public DammAlgorithm(String value, int size, boolean isPrintable) {
+        setValue(Integer.valueOf(value));
+        setQuasiGroupGenerator(size, isPrintable);
+    }
+
+    public DammAlgorithm(String value, String size, boolean isPrintable) {
+        setValue(Integer.valueOf(value));
+        setQuasiGroupGenerator(size, isPrintable);
+    }
+
     private void setValue(int value) {
         this.value = value;
     }
@@ -58,6 +76,14 @@ public class DammAlgorithm {
 
     private void setQuasiGroupGenerator(String size) {
         this.QGG = new QuasiGroupGenerator(size);
+    }
+
+    private void setQuasiGroupGenerator(int size, boolean isPrintable) {
+        this.QGG = new QuasiGroupGenerator(size, isPrintable);
+    }
+
+    private void setQuasiGroupGenerator(String size, boolean isPrintable) {
+        this.QGG = new QuasiGroupGenerator(size, isPrintable);
     }
 
     public int getValue() {
@@ -72,13 +98,14 @@ public class DammAlgorithm {
         return interim;
     }
 
-    public int getCheckDigit() {
-        return checkDigit;
+    public void PrintAllInterimValues() {
+        for (int i = 0; i < interim.size(); i++) {
+            System.out.print(interim.get(i));
+        }
     }
 
-    //Default is false
-    public void printQuasiGroup() {
-        QGG.Print();
+    public int getCheckDigit() {
+        return checkDigit;
     }
 
     public void CalculateChecksum() {
@@ -96,7 +123,6 @@ public class DammAlgorithm {
     public void Validate() {
         int idx = inputLength() - 1;
         int ValidCheckDigit = QGG.getValue(ValueAtInputIndex(idx), ValueAtInputIndex(idx));
-        //System.out.println(ValidCheckDigit);
     }
 
     private int inputLength() {

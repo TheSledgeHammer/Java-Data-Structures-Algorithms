@@ -14,9 +14,9 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package src.main.java.javadatastructuresalgorithms.WorkInProgress;
+package javadatastructuresalgorithms.WorkInProgress;
 
-import src.main.java.javadatastructuresalgorithms.DataStructures.CircularDoublyLinkedList;
+import javadatastructuresalgorithms.DataStructures.CircularDoublyLinkedList;
 
 import java.util.ArrayList;
 import java.util.List;

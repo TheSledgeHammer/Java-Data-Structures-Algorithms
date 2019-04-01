@@ -14,7 +14,7 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package src.main.java.javadatastructuresalgorithms.Algorithms;
+package javadatastructuresalgorithms.Algorithms;
 
 import java.util.*;
 
@@ -22,17 +22,35 @@ public class QuasiGroupGenerator {
 	
 	private int size;
 	private int numbersNeeded;
+	private boolean isPrintable;
 	private int idxZero = 0;
 	private HashMap<Integer, Set<Integer>> row = new LinkedHashMap<>();
 
 	public QuasiGroupGenerator(int size) {
 		setSize(size);
+		setIsPrintable(false);
 		createQuasiPart1();
 		createQuasiPart2();
+
 	}
 
 	public QuasiGroupGenerator(String size) {
 		setSize(Integer.valueOf(size));
+		setIsPrintable(false);
+		createQuasiPart1();
+		createQuasiPart2();
+	}
+
+	public QuasiGroupGenerator(int size, boolean isPrintable) {
+		setSize(size);
+		setIsPrintable(isPrintable);
+		createQuasiPart1();
+		createQuasiPart2();
+	}
+
+	public QuasiGroupGenerator(String size, boolean isPrintable) {
+		setSize(Integer.valueOf(size));
+		setIsPrintable(isPrintable);
 		createQuasiPart1();
 		createQuasiPart2();
 	}
@@ -89,19 +107,7 @@ public class QuasiGroupGenerator {
 	private void createQuasiPart2() {
 		for(int i = 0; i < Size(); i++) {
 			this.row.put(i, QuasiModification(createQuasiPart1()));
-				//System.out.println(/*"Row " + i + */getRow(i));
 		}
-	}
-
-	/* Prints QuasiGroup as a Table
-	*  Don't use this method with QuasiModification!
-	*/
-	public void Print() {
-		/*for(int i = 0; i < Size(); i++) {
-			this.row.put(i, createQuasiPart1());
-			this.row.put(i, QuasiModification(createQuasiPart1()));
-			System.out.println("Row " + i + getRow(i));
-		}*/
 	}
 
 	/*~Hacky Approach~ To Randomized QuasiGroup:
@@ -122,6 +128,22 @@ public class QuasiGroupGenerator {
 		idxZero++;
 		Set<Integer> newRow = new LinkedHashSet<>();
 		newRow.addAll(arrL);
+		Print(newRow);
 		return newRow;
+	}
+
+	//Printing of QuasiGroup
+	private void Print(Set<Integer> mod) {
+		if(isPrintable) {
+			System.out.println(mod);
+		}
+	}
+
+	private void setIsPrintable(boolean isPrintable) {
+		this.isPrintable = isPrintable;
+	}
+
+	public boolean getIsPrintable() {
+		return isPrintable;
 	}
 }

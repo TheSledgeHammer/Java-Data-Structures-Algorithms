@@ -14,7 +14,7 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package src.main.java.javadatastructuresalgorithms.DataStructures.NodeInterfaces;
+package javadatastructuresalgorithms.DataStructures.NodeInterfaces;
 
 public interface ITableNode<R,C,V> extends INodeRow<R>, INodeColumn<C>, INodeValue<V> {
 

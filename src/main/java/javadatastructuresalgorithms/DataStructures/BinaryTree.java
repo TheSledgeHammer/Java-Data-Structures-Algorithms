@@ -14,9 +14,9 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package src.main.java.javadatastructuresalgorithms.DataStructures;
+package javadatastructuresalgorithms.DataStructures;
 
-import src.main.java.javadatastructuresalgorithms.DataStructures.NodeTypes.TreeNode;
+import javadatastructuresalgorithms.DataStructures.NodeTypes.TreeNode;
 
 /**
  * A Binary Tree implementation that's backed by a CircularDoublyLinkedList<V>.

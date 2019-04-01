@@ -14,22 +14,22 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package src.main.java.javadatastructuresalgorithms;
+package javadatastructuresalgorithms;
 
-import src.main.java.javadatastructuresalgorithms.Algorithms.DammAlgorithm;
-import src.main.java.javadatastructuresalgorithms.Algorithms.QuasiGroupGenerator;
-import src.main.java.javadatastructuresalgorithms.DataStructures.CircularDoublyLinkedList;
-import src.main.java.javadatastructuresalgorithms.DataStructures.*;
-import src.main.java.javadatastructuresalgorithms.WorkInProgress.FibonacciHeap;
-import src.main.java.javadatastructuresalgorithms.WorkInProgress.HashList;
-import src.main.java.javadatastructuresalgorithms.WorkInProgress.Trie;
-
+import javadatastructuresalgorithms.Algorithms.DammAlgorithm;
+import javadatastructuresalgorithms.Algorithms.DammAlgorithmStore;
+import javadatastructuresalgorithms.Algorithms.QuasiGroupGenerator;
+import javadatastructuresalgorithms.DataStructures.*;
+import javadatastructuresalgorithms.WorkInProgress.FibonacciHeap;
+import javadatastructuresalgorithms.WorkInProgress.HashList;
+import javadatastructuresalgorithms.WorkInProgress.Trie;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Main {
 
     public static void main(String[] args) {
-        LinkedList<String> LL = new LinkedList<>();
+        LinkedList<ArrayList<Integer>> LL = new LinkedList<>();
 
         //Lists
         SinglyLinkedList<Integer> SLL = new SinglyLinkedList<>();
@@ -39,10 +39,14 @@ public class Main {
         //Maps
         CircularDoublyLinkedMap<Integer, String> CDLM = new CircularDoublyLinkedMap<>();
 
+        //Tables: Like Google Guava's table structure
+        CircularDoublyLinkedTable<Integer, Integer, Integer> CDLT = new CircularDoublyLinkedTable<>();
+
         //Trees
         BinaryTree<Integer> BT = new BinaryTree<>();
         TernaryTree<Integer> TT = new TernaryTree<>();
         BinaryIndexedTree<Integer> BIT = new BinaryIndexedTree<>();
+        TernaryIndexedTree<Integer> TIT = new TernaryIndexedTree<>();
         Trie<String> trie = new Trie<>();//WIP
 
         //Hashing
@@ -54,8 +58,8 @@ public class Main {
         FibonacciHeap<Integer> fibHeap = new FibonacciHeap<>(); //WIP
 
         //Algorithms:
-        QuasiGroupGenerator QGG = new QuasiGroupGenerator(18);
-        DammAlgorithm DA = new DammAlgorithm("1345", "10"); //WIP: Validation of Checksum
-
+        QuasiGroupGenerator QGG = new QuasiGroupGenerator(10);
+        DammAlgorithm DA = new DammAlgorithm(100, 10, true);//WIP: Validation of Checksum
+        DammAlgorithmStore DAS = new DammAlgorithmStore();
     }
 }

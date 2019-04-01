@@ -14,7 +14,7 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package src.main.java.javadatastructuresalgorithms.Algorithms;
+package javadatastructuresalgorithms.Algorithms;
 
 public class MagicSquare {
 

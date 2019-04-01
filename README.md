@@ -11,6 +11,9 @@ The following Contains various helpful data structure classes.
 #### Maps:
 * CircularDoublyLinkedMap: A Map implementation of a CircularDoublyLinkedList. Near exactly same as CircularDoublyLinkedList but with a key-value pair.
 
+#### Tables: Structure is based of Google Gauva's Tables
+* CircularDoublyLinkedTable: A Table implementation of a CircularDoublyLinkedList. Similar to CircularDoublyLinkedList but with a row-column-value triplet.
+
 #### Trees:
 * BinaryTree
 * TernaryTree
@@ -27,6 +30,7 @@ The following Contains various helpful data structure classes.
 * FibonacciHeap: Work in Progress
 * QuasiGroupGenerator: Can create QuasiGroups of size n with an order of magnitute n, to form a Latin Square.
 * DammAlgorithm: Can calculate a check digit using Damm's Algorithm. Requires the QuasiGroupGenerator. Work in Progress: Validation using Damm's Algorithm does not work, as the QuasiGroups are randomly generated.
+* DammAlgorithmStore: Stores previously generated DammAlgorithms. With add & remove
 
 ## Apache Licence 2.0
 Copyright [2018] [Martin Kelly]

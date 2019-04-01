@@ -14,9 +14,9 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package src.main.java.javadatastructuresalgorithms.WorkInProgress;
+package javadatastructuresalgorithms.WorkInProgress;
 
-import src.main.java.javadatastructuresalgorithms.DataStructures.NodeTypes.HashEntry;
+import javadatastructuresalgorithms.DataStructures.NodeTypes.HashEntry;
 
 import java.util.LinkedList;
 import java.util.List;

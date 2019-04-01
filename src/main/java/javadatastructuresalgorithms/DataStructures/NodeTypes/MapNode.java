@@ -14,9 +14,9 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package src.main.java.javadatastructuresalgorithms.DataStructures.NodeTypes;
+package javadatastructuresalgorithms.DataStructures.NodeTypes;
 
-import src.main.java.javadatastructuresalgorithms.DataStructures.NodeInterfaces.IMapNode;
+import javadatastructuresalgorithms.DataStructures.NodeInterfaces.IMapNode;
 
 public class MapNode<K,V> implements IMapNode<K,V> {
 

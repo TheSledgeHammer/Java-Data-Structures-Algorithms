@@ -14,9 +14,9 @@
  * limitations under the License.                                                                 *
  **************************************************************************************************/
 
-package src.main.java.javadatastructuresalgorithms.DataStructures;
+package javadatastructuresalgorithms.DataStructures;
 
-import src.main.java.javadatastructuresalgorithms.DataStructures.NodeTypes.LinkedMapNode;
+import javadatastructuresalgorithms.DataStructures.NodeTypes.LinkedMapNode;
 
 public class CircularDoublyLinkedMap<K,V> {
 
