@@ -14,8 +14,8 @@ plugins {
   id 'maven'
   id "com.jfrog.bintray" version "1.8.4"
 }
-apply from: project.file('git-maven.gradle')
-apply from: project.file('mavenBintray.gradle')
+apply from: rootProject.file('git-maven.gradle')
+apply from: rootProject.file('mavenBintray.gradle')
 
 group= "com.thesledgehammer.java-data-structure-algorithms"
 archivesBaseName = "Java-Data-Structure-Algorithms"
