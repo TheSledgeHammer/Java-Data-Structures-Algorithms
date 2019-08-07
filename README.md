@@ -3,7 +3,7 @@ The following Contains various helpful data structure classes.
 
 Please refer to Groovy-Data-Structures-Algorithms for an updated version of this repository. Which can easily be converted from groovy to a java library if needed.
 
-This repository is set to be Archived.
+This repository is set to be Archived and unlikely to receive updates in the future.
 
 ### Includes:
 
